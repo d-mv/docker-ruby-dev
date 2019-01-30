@@ -21,8 +21,10 @@ USER docker
 
 ## Install basic software
 
-# Install Midnigh Commander
+# Midnigh Commander
 RUN sudo apt-get install -y mc
+# Nano
+RUN sudo apt-get install nano
 # PGP
 RUN sudo apt-get install -y gnupg2
 # Curl
@@ -48,13 +50,25 @@ RUN sudo touch /home/docker/.zshrc
 RUN sudo chown docker /home/docker/.zshrc
 # RUN mkdir /home/docker/.oh-my-zsh
 RUN sudo chown -R docker /home/docker/.oh-my-zsh
+# Remove git plugin
+# RUN sudo rm -rf /home/docker/.oh-my-zsh/plugins/git*
 RUN sudo echo 'source $ZSH/oh-my-zsh.sh' >> /home/docker/.zshrc
 # Install zsh-autosuggestions
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 RUN sudo echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >> /home/docker/.zshrc
 # Install syntax highlight
-RUN git clone https://github.com/zdharma/fast-syntax-highlighting ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
-RUN sudo echo 'source ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh' >> /home/docker/.zshrc
+RUN git clone https://github.com/zdharma/fast-syntax-highlighting ~/.zsh/fast-syntax-highlighting
+RUN sudo echo 'source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh' >> /home/docker/.zshrc
+# Remove Git module from the .oh-my-zsh theme
+RUN sudo rm -rf /home/docker/.oh-my-zsh/themes/robbyrussell.zsh-theme
+RUN sudo touch /home/docker/.oh-my-zsh/themes/robbyrussell.zsh-theme
+RUN sudo chown docker /home/docker/.oh-my-zsh/themes/robbyrussell.zsh-theme
+RUN echo 'local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"' >> /home/docker/.oh-my-zsh/themes/robbyrussell.zsh-theme
+RUN echo 'PROMPT="${ret_status} %{$fg[cyan]%}%c%{$reset_color%} "' >> /home/docker/.oh-my-zsh/themes/robbyrussell.zsh-theme
+RUN echo 'ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"' >> /home/docker/.oh-my-zsh/themes/robbyrussell.zsh-theme
+RUN echo 'ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "' >> /home/docker/.oh-my-zsh/themes/robbyrussell.zsh-theme
+RUN echo 'ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"' >> /home/docker/.oh-my-zsh/themes/robbyrussell.zsh-theme
+RUN echo 'ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"' >> /home/docker/.oh-my-zsh/themes/robbyrussell.zsh-theme
 # Set up build utilities
 RUN sudo apt install -y build-essential zlib1g-dev libssl-dev libffi-dev libxml2 libxml2-dev libxslt1-dev libreadline-dev
 
@@ -83,16 +97,25 @@ RUN gem sources --remove https://rubygems.org/
 RUN gem sources --add https://gems.ruby-china.com/
 RUN gem sources -l
 RUN gem install rake bundler rspec rubocop pry pry-byebug hub colored octokit faker sinatra-contrib sinatra activerecord sqlite3
-# Install Micro
-RUN sudo curl https://getmic.ro
+# Node
+RUN sudo curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
+RUN mkdir /home/docker/.npm-global
+RUN npm config set prefix '/home/docker/.npm-global'
+RUN sudo echo 'export PATH=/home/docker/.npm-global/bin:$PATH' >> /home/docker/.zshrc
+ENV PATH=/home/docker/.npm-global/bin:$PATH
+# Install packages
+RUN npm i -g ngrok
+RUN npm i -g lite-server
+RUN npm i -g vtop
+
 # Fixing ownership
 RUN sudo touch /home/docker/.zsh_history
-RUN sudo mkdir /home/docker/.config
+# RUN sudo mkdir /home/docker/.config
 RUN sudo chown docker /home/docker/
 RUN sudo chown docker /home/docker/.zsh_history
 RUN sudo chown docker /home/docker/.zshrc
 RUN sudo chown docker /home/docker/.config
-
 
 # Final stage
 CMD echo "command run"
