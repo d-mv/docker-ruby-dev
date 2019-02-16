@@ -39,7 +39,6 @@ Download and use the following scripts:
 - `run.sh` - to delete old instance, run & execute the container.
 - `exec.sh` - just execute (login).
 
-
 ## **UPDATE 1**
 
 - Increased upper limits: 4 GB memory and 4 CPU cores.
@@ -47,17 +46,18 @@ Download and use the following scripts:
 - Removed Micro Editor - due to installation issues.
 - Added Nano editor instead.
 - Changed scripts:
-  - `build_n_run.sh` - added -t option. [More details here](https://docs.docker.com/engine/reference/commandline/build/).
+  - `_build_n_run.sh` - added -t option. [More details here](https://docs.docker.com/engine/reference/commandline/build/).
 - Added scripts:
-  - `run_3000.sh` - maps port 3000 to host 8080 - for lite-server (default).
-  - `run_4567.sh` - maps port 4567 to host 8080 - for ruby server (default).
-  - `exec.sh` - execute (login) with *root* as user.
-  - `destroy.sh` - destroys container and image.
+  - `_run_3000.sh` - maps port 3000 to host 8080.
+  - `_destroy.sh` - destroys container and image.
+  - `exec.sh` - execute (login) with _docker_ as user.
+  - `exec_root.sh` - execute (login) with _root_ as user.
+  - `start.sh` - starts container.
 
 ## **UPDATE 2**
 
-- Removed gem installation to speed up
-- Added PostgreSQL (can be disabled)
-- Add Linuxbrew
+- Removed gem installation to speed up.
+- Added PostgreSQL (can be disabled).
+- Add Linuxbrew.
 
 TODO: Revise the whole script to smooth operation
