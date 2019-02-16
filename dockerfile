@@ -91,12 +91,29 @@ RUN rbenv global 2.5.3
 # Set environtment path for ruby
 ENV PATH /home/docker/.rbenv/versions/2.5.3/bin:$PATH
 RUN ruby -v
+# Set environment to bypass tzdata interaction
+ENV TZ=Asia/Jerusalem
+RUN sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+# Optional
+# RUN sudo DEBIAN_FRONTEND=noninteractive
+# Install required DBs
+RUN sudo apt-get -y install sqlite3 libsqlite3-dev
+RUN sudo apt-get -y install libpq-dev build-essential
+RUN sudo apt-get -y install postgresql postgresql-contrib
+RUN sudo update-rc.d postgresql enable
+RUN sudo service postgresql start
 # Install required gems
-RUN sudo apt-get install sqlite3 libsqlite3-dev
 RUN gem sources --remove https://rubygems.org/
 RUN gem sources --add https://gems.ruby-china.com/
 RUN gem sources -l
-RUN gem install rake bundler rspec rubocop pry pry-byebug hub colored octokit faker sinatra-contrib sinatra activerecord sqlite3
+RUN gem install rake
+RUN gem install bundler
+RUN gem install rspec
+RUN gem install rubocop
+RUN gem install hub
+RUN gem install octokit
+# (Optional)
+RUN gem install rails
 # Node
 RUN sudo curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 RUN sudo apt-get install -y nodejs
@@ -109,6 +126,18 @@ RUN npm i -g ngrok
 RUN npm i -g lite-server
 RUN npm i -g vtop
 
+# Install brew
+RUN git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew
+RUN mkdir /home/docker/.linuxbrew/bin
+RUN ln -s /home/docker/.linuxbrew/Homebrew/bin/brew /home/docker/.linuxbrew/bin
+RUN sudo echo 'export HOMEBREW_NO_ENV_FILTERING=1' >> /home/docker/.zshrc
+# (Optional) Install micro editor
+# RUN brew install micro
+# Install Yarn
+ENV alias node=nodejs
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN sudo echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN sudo apt-get update && sudo apt-get -y install yarn
 # Fixing ownership
 RUN sudo touch /home/docker/.zsh_history
 # RUN sudo mkdir /home/docker/.config
