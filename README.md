@@ -23,25 +23,13 @@ _Ruby:_
 
 - Rbenv
 - Ruby 2.5.3
-- Gems:
-  - rake
-  - bundler
-  - rspec
-  - rubocop
-  - pry
-  - pry-byebug
-  - hub
-  - colored
-  - octokit
-  - faker
-  - sinatra-contrib
-  - sinatra
-  - activerecord
-  - sqlite3
+- Some gems for starters
 - ADDED: Node 11.x
   - [ngrok](https://ngrok.com)
   - [lite-server](https://github.com/johnpapa/lite-server)
   - [vtop](https://github.com/MrRio/vtop)
+- ADDED: PostgreSQL
+- ADDED: Linuxbrew
 
 ## **Use**
 
@@ -65,3 +53,11 @@ Download and use the following scripts:
   - `run_4567.sh` - maps port 4567 to host 8080 - for ruby server (default).
   - `exec.sh` - execute (login) with *root* as user.
   - `destroy.sh` - destroys container and image.
+
+## **UPDATE 2**
+
+- Removed gem installation to speed up
+- Added PostgreSQL (can be disabled)
+- Add Linuxbrew
+
+TODO: Revise the whole script to smooth operation
