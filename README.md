@@ -1,4 +1,4 @@
-# **Docker // Ruby Environment**
+# **Docker // Ruby Environment v2**
 
 ## **Why?**
 
@@ -13,23 +13,21 @@ _Standard:_
 - PGP
 - Curl
 - Git
-- [Zsh](https://github.com/zsh-users/zsh) shell with [Oh-My-Zsh](https://github.com/robbyrussell/oh-my-zsh) with [syntax highlighting](https://github.com/zdharma/fast-syntax-highlighting) & [auto-suggestion](https://github.com/zsh-users/zsh-autosuggestions)
+- [Zsh](https://github.com/zsh-users/zsh) shell with [syntax highlighting](https://github.com/zdharma/fast-syntax-highlighting) & [auto-suggestion](https://github.com/zsh-users/zsh-autosuggestions)
 - Set of standard build tool
 - [Midnight Commander](https://github.com/MidnightCommander/mc)
-- REMOVED: [Micro Editor](https://micro-editor.github.io/)
-- ADDED: [Nano editor](https://www.nano-editor.org)
+- [Nano editor](https://www.nano-editor.org)
+- Linuxbrew
 
 _Ruby:_
 
 - Rbenv
 - Ruby 2.5.3
-- Some gems for starters
-- ADDED: Node 11.x
-  - [ngrok](https://ngrok.com)
-  - [lite-server](https://github.com/johnpapa/lite-server)
-  - [vtop](https://github.com/MrRio/vtop)
-- ADDED: PostgreSQL
-- ADDED: Linuxbrew
+- Some gems for starters, including Rails
+- Heroku
+- SQLite
+- PostgreSQL (off by default)
+
 
 ## **Use**
 

@@ -1,3 +1,3 @@
 #!/bin/zsh
-docker rm -f ruby-dev_cont
-docker rmi -f ruby-dev_image
+docker rm -f ruby_cnt
+docker rmi -f ruby_img

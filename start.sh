@@ -1,2 +1,2 @@
 #!/bin/zsh
-docker start ruby-dev_cont
+docker start ruby_cnt
