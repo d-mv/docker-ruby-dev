@@ -58,4 +58,10 @@ Download and use the following scripts:
 - Added PostgreSQL (can be disabled).
 - Add Linuxbrew.
 
-TODO: Revise the whole script to smooth operation
+## v2
+
+- Removed all non-required stuff:
+  - scripts with ports (build-n-run & run have ports mapped)
+  - removed ZSH themes
+- Refactored to decrease amount of actions and layers
+- Node with JS will be included in 'Docker // JS Environment'
