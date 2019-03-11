@@ -62,4 +62,4 @@ Download and use the following scripts:
   - scripts with ports (build-n-run & run have ports mapped)
   - removed ZSH themes
 - Refactored to decrease amount of actions and layers
-- Node with JS will be included in 'Docker // JS Environment'
+- Node with JS will be included in [Docker // JS Environment](https://github.com/d-mv/docker-js-dev)
