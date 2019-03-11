@@ -18,16 +18,14 @@ _Standard:_
 - [Midnight Commander](https://github.com/MidnightCommander/mc)
 - [Nano editor](https://www.nano-editor.org)
 - Linuxbrew
-
-_Ruby:_
-
-- Rbenv
-- Ruby 2.5.3
-- Some gems for starters, including Rails
+- _Ruby:_
+  - Rbenv
+  - Ruby 2.5.3
+  - Rails
+  - Some gems for starters, including Rails
 - Heroku
 - SQLite
 - PostgreSQL (off by default)
-
 
 ## **Use**
 
